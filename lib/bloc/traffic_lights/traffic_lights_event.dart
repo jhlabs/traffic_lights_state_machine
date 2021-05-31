@@ -1,6 +1,8 @@
 part of 'traffic_lights_bloc.dart';
 
 @freezed
-class TrafficLightEvent with _$TrafficLightEvent {
-  const factory TrafficLightEvent.timerTicked() = TimerTicked;
+class TrafficLightsEvent with _$TrafficLightsEvent {
+  const factory TrafficLightsEvent.turnedOn() = TurnedOn;
+  const factory TrafficLightsEvent.turnedOff() = TurnedOff;
+  const factory TrafficLightsEvent.timerTicked(int duration) = TimerTicked;
 }

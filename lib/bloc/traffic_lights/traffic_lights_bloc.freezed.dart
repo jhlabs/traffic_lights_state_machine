@@ -13,8 +13,12 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$TrafficLightStateTearOff {
-  const _$TrafficLightStateTearOff();
+class _$TrafficLightsStateTearOff {
+  const _$TrafficLightsStateTearOff();
+
+  Off off() {
+    return const Off();
+  }
 
   Green green(int timeRemaining) {
     return Green(
@@ -36,14 +40,13 @@ class _$TrafficLightStateTearOff {
 }
 
 /// @nodoc
-const $TrafficLightState = _$TrafficLightStateTearOff();
+const $TrafficLightsState = _$TrafficLightsStateTearOff();
 
 /// @nodoc
-mixin _$TrafficLightState {
-  int get timeRemaining => throw _privateConstructorUsedError;
-
+mixin _$TrafficLightsState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() off,
     required TResult Function(int timeRemaining) green,
     required TResult Function(int timeRemaining) orange,
     required TResult Function(int timeRemaining) red,
@@ -51,6 +54,7 @@ mixin _$TrafficLightState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? off,
     TResult Function(int timeRemaining)? green,
     TResult Function(int timeRemaining)? orange,
     TResult Function(int timeRemaining)? red,
@@ -59,6 +63,7 @@ mixin _$TrafficLightState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(Off value) off,
     required TResult Function(Green value) green,
     required TResult Function(Orange value) orange,
     required TResult Function(Red value) red,
@@ -66,59 +71,139 @@ mixin _$TrafficLightState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(Off value)? off,
     TResult Function(Green value)? green,
     TResult Function(Orange value)? orange,
     TResult Function(Red value)? red,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $TrafficLightStateCopyWith<TrafficLightState> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TrafficLightStateCopyWith<$Res> {
-  factory $TrafficLightStateCopyWith(
-          TrafficLightState value, $Res Function(TrafficLightState) then) =
-      _$TrafficLightStateCopyWithImpl<$Res>;
-  $Res call({int timeRemaining});
+abstract class $TrafficLightsStateCopyWith<$Res> {
+  factory $TrafficLightsStateCopyWith(
+          TrafficLightsState value, $Res Function(TrafficLightsState) then) =
+      _$TrafficLightsStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$TrafficLightStateCopyWithImpl<$Res>
-    implements $TrafficLightStateCopyWith<$Res> {
-  _$TrafficLightStateCopyWithImpl(this._value, this._then);
+class _$TrafficLightsStateCopyWithImpl<$Res>
+    implements $TrafficLightsStateCopyWith<$Res> {
+  _$TrafficLightsStateCopyWithImpl(this._value, this._then);
 
-  final TrafficLightState _value;
+  final TrafficLightsState _value;
   // ignore: unused_field
-  final $Res Function(TrafficLightState) _then;
+  final $Res Function(TrafficLightsState) _then;
+}
+
+/// @nodoc
+abstract class $OffCopyWith<$Res> {
+  factory $OffCopyWith(Off value, $Res Function(Off) then) =
+      _$OffCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$OffCopyWithImpl<$Res> extends _$TrafficLightsStateCopyWithImpl<$Res>
+    implements $OffCopyWith<$Res> {
+  _$OffCopyWithImpl(Off _value, $Res Function(Off) _then)
+      : super(_value, (v) => _then(v as Off));
 
   @override
-  $Res call({
-    Object? timeRemaining = freezed,
+  Off get _value => super._value as Off;
+}
+
+/// @nodoc
+
+class _$Off extends Off with DiagnosticableTreeMixin {
+  const _$Off() : super._();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'TrafficLightsState.off()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties..add(DiagnosticsProperty('type', 'TrafficLightsState.off'));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is Off);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() off,
+    required TResult Function(int timeRemaining) green,
+    required TResult Function(int timeRemaining) orange,
+    required TResult Function(int timeRemaining) red,
   }) {
-    return _then(_value.copyWith(
-      timeRemaining: timeRemaining == freezed
-          ? _value.timeRemaining
-          : timeRemaining // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
+    return off();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? off,
+    TResult Function(int timeRemaining)? green,
+    TResult Function(int timeRemaining)? orange,
+    TResult Function(int timeRemaining)? red,
+    required TResult orElse(),
+  }) {
+    if (off != null) {
+      return off();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Off value) off,
+    required TResult Function(Green value) green,
+    required TResult Function(Orange value) orange,
+    required TResult Function(Red value) red,
+  }) {
+    return off(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Off value)? off,
+    TResult Function(Green value)? green,
+    TResult Function(Orange value)? orange,
+    TResult Function(Red value)? red,
+    required TResult orElse(),
+  }) {
+    if (off != null) {
+      return off(this);
+    }
+    return orElse();
   }
 }
 
+abstract class Off extends TrafficLightsState {
+  const factory Off() = _$Off;
+  const Off._() : super._();
+}
+
 /// @nodoc
-abstract class $GreenCopyWith<$Res>
-    implements $TrafficLightStateCopyWith<$Res> {
+abstract class $GreenCopyWith<$Res> {
   factory $GreenCopyWith(Green value, $Res Function(Green) then) =
       _$GreenCopyWithImpl<$Res>;
-  @override
   $Res call({int timeRemaining});
 }
 
 /// @nodoc
-class _$GreenCopyWithImpl<$Res> extends _$TrafficLightStateCopyWithImpl<$Res>
+class _$GreenCopyWithImpl<$Res> extends _$TrafficLightsStateCopyWithImpl<$Res>
     implements $GreenCopyWith<$Res> {
   _$GreenCopyWithImpl(Green _value, $Res Function(Green) _then)
       : super(_value, (v) => _then(v as Green));
@@ -141,22 +226,22 @@ class _$GreenCopyWithImpl<$Res> extends _$TrafficLightStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$Green with DiagnosticableTreeMixin implements Green {
-  const _$Green(this.timeRemaining);
+class _$Green extends Green with DiagnosticableTreeMixin {
+  const _$Green(this.timeRemaining) : super._();
 
   @override
   final int timeRemaining;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'TrafficLightState.green(timeRemaining: $timeRemaining)';
+    return 'TrafficLightsState.green(timeRemaining: $timeRemaining)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'TrafficLightState.green'))
+      ..add(DiagnosticsProperty('type', 'TrafficLightsState.green'))
       ..add(DiagnosticsProperty('timeRemaining', timeRemaining));
   }
 
@@ -181,6 +266,7 @@ class _$Green with DiagnosticableTreeMixin implements Green {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() off,
     required TResult Function(int timeRemaining) green,
     required TResult Function(int timeRemaining) orange,
     required TResult Function(int timeRemaining) red,
@@ -191,6 +277,7 @@ class _$Green with DiagnosticableTreeMixin implements Green {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? off,
     TResult Function(int timeRemaining)? green,
     TResult Function(int timeRemaining)? orange,
     TResult Function(int timeRemaining)? red,
@@ -205,6 +292,7 @@ class _$Green with DiagnosticableTreeMixin implements Green {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(Off value) off,
     required TResult Function(Green value) green,
     required TResult Function(Orange value) orange,
     required TResult Function(Red value) red,
@@ -215,6 +303,7 @@ class _$Green with DiagnosticableTreeMixin implements Green {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(Off value)? off,
     TResult Function(Green value)? green,
     TResult Function(Orange value)? orange,
     TResult Function(Red value)? red,
@@ -227,27 +316,24 @@ class _$Green with DiagnosticableTreeMixin implements Green {
   }
 }
 
-abstract class Green implements TrafficLightState {
+abstract class Green extends TrafficLightsState {
   const factory Green(int timeRemaining) = _$Green;
+  const Green._() : super._();
 
-  @override
   int get timeRemaining => throw _privateConstructorUsedError;
-  @override
   @JsonKey(ignore: true)
   $GreenCopyWith<Green> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $OrangeCopyWith<$Res>
-    implements $TrafficLightStateCopyWith<$Res> {
+abstract class $OrangeCopyWith<$Res> {
   factory $OrangeCopyWith(Orange value, $Res Function(Orange) then) =
       _$OrangeCopyWithImpl<$Res>;
-  @override
   $Res call({int timeRemaining});
 }
 
 /// @nodoc
-class _$OrangeCopyWithImpl<$Res> extends _$TrafficLightStateCopyWithImpl<$Res>
+class _$OrangeCopyWithImpl<$Res> extends _$TrafficLightsStateCopyWithImpl<$Res>
     implements $OrangeCopyWith<$Res> {
   _$OrangeCopyWithImpl(Orange _value, $Res Function(Orange) _then)
       : super(_value, (v) => _then(v as Orange));
@@ -270,22 +356,22 @@ class _$OrangeCopyWithImpl<$Res> extends _$TrafficLightStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$Orange with DiagnosticableTreeMixin implements Orange {
-  const _$Orange(this.timeRemaining);
+class _$Orange extends Orange with DiagnosticableTreeMixin {
+  const _$Orange(this.timeRemaining) : super._();
 
   @override
   final int timeRemaining;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'TrafficLightState.orange(timeRemaining: $timeRemaining)';
+    return 'TrafficLightsState.orange(timeRemaining: $timeRemaining)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'TrafficLightState.orange'))
+      ..add(DiagnosticsProperty('type', 'TrafficLightsState.orange'))
       ..add(DiagnosticsProperty('timeRemaining', timeRemaining));
   }
 
@@ -310,6 +396,7 @@ class _$Orange with DiagnosticableTreeMixin implements Orange {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() off,
     required TResult Function(int timeRemaining) green,
     required TResult Function(int timeRemaining) orange,
     required TResult Function(int timeRemaining) red,
@@ -320,6 +407,7 @@ class _$Orange with DiagnosticableTreeMixin implements Orange {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? off,
     TResult Function(int timeRemaining)? green,
     TResult Function(int timeRemaining)? orange,
     TResult Function(int timeRemaining)? red,
@@ -334,6 +422,7 @@ class _$Orange with DiagnosticableTreeMixin implements Orange {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(Off value) off,
     required TResult Function(Green value) green,
     required TResult Function(Orange value) orange,
     required TResult Function(Red value) red,
@@ -344,6 +433,7 @@ class _$Orange with DiagnosticableTreeMixin implements Orange {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(Off value)? off,
     TResult Function(Green value)? green,
     TResult Function(Orange value)? orange,
     TResult Function(Red value)? red,
@@ -356,26 +446,24 @@ class _$Orange with DiagnosticableTreeMixin implements Orange {
   }
 }
 
-abstract class Orange implements TrafficLightState {
+abstract class Orange extends TrafficLightsState {
   const factory Orange(int timeRemaining) = _$Orange;
+  const Orange._() : super._();
 
-  @override
   int get timeRemaining => throw _privateConstructorUsedError;
-  @override
   @JsonKey(ignore: true)
   $OrangeCopyWith<Orange> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $RedCopyWith<$Res> implements $TrafficLightStateCopyWith<$Res> {
+abstract class $RedCopyWith<$Res> {
   factory $RedCopyWith(Red value, $Res Function(Red) then) =
       _$RedCopyWithImpl<$Res>;
-  @override
   $Res call({int timeRemaining});
 }
 
 /// @nodoc
-class _$RedCopyWithImpl<$Res> extends _$TrafficLightStateCopyWithImpl<$Res>
+class _$RedCopyWithImpl<$Res> extends _$TrafficLightsStateCopyWithImpl<$Res>
     implements $RedCopyWith<$Res> {
   _$RedCopyWithImpl(Red _value, $Res Function(Red) _then)
       : super(_value, (v) => _then(v as Red));
@@ -398,22 +486,22 @@ class _$RedCopyWithImpl<$Res> extends _$TrafficLightStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$Red with DiagnosticableTreeMixin implements Red {
-  const _$Red(this.timeRemaining);
+class _$Red extends Red with DiagnosticableTreeMixin {
+  const _$Red(this.timeRemaining) : super._();
 
   @override
   final int timeRemaining;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'TrafficLightState.red(timeRemaining: $timeRemaining)';
+    return 'TrafficLightsState.red(timeRemaining: $timeRemaining)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'TrafficLightState.red'))
+      ..add(DiagnosticsProperty('type', 'TrafficLightsState.red'))
       ..add(DiagnosticsProperty('timeRemaining', timeRemaining));
   }
 
@@ -437,6 +525,7 @@ class _$Red with DiagnosticableTreeMixin implements Red {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() off,
     required TResult Function(int timeRemaining) green,
     required TResult Function(int timeRemaining) orange,
     required TResult Function(int timeRemaining) red,
@@ -447,6 +536,7 @@ class _$Red with DiagnosticableTreeMixin implements Red {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? off,
     TResult Function(int timeRemaining)? green,
     TResult Function(int timeRemaining)? orange,
     TResult Function(int timeRemaining)? red,
@@ -461,6 +551,7 @@ class _$Red with DiagnosticableTreeMixin implements Red {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(Off value) off,
     required TResult Function(Green value) green,
     required TResult Function(Orange value) orange,
     required TResult Function(Red value) red,
@@ -471,6 +562,7 @@ class _$Red with DiagnosticableTreeMixin implements Red {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(Off value)? off,
     TResult Function(Green value)? green,
     TResult Function(Orange value)? orange,
     TResult Function(Red value)? red,
@@ -483,48 +575,65 @@ class _$Red with DiagnosticableTreeMixin implements Red {
   }
 }
 
-abstract class Red implements TrafficLightState {
+abstract class Red extends TrafficLightsState {
   const factory Red(int timeRemaining) = _$Red;
+  const Red._() : super._();
 
-  @override
   int get timeRemaining => throw _privateConstructorUsedError;
-  @override
   @JsonKey(ignore: true)
   $RedCopyWith<Red> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-class _$TrafficLightEventTearOff {
-  const _$TrafficLightEventTearOff();
+class _$TrafficLightsEventTearOff {
+  const _$TrafficLightsEventTearOff();
 
-  TimerTicked timerTicked() {
-    return const TimerTicked();
+  TurnedOn turnedOn() {
+    return const TurnedOn();
+  }
+
+  TurnedOff turnedOff() {
+    return const TurnedOff();
+  }
+
+  TimerTicked timerTicked(int duration) {
+    return TimerTicked(
+      duration,
+    );
   }
 }
 
 /// @nodoc
-const $TrafficLightEvent = _$TrafficLightEventTearOff();
+const $TrafficLightsEvent = _$TrafficLightsEventTearOff();
 
 /// @nodoc
-mixin _$TrafficLightEvent {
+mixin _$TrafficLightsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() timerTicked,
+    required TResult Function() turnedOn,
+    required TResult Function() turnedOff,
+    required TResult Function(int duration) timerTicked,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? timerTicked,
+    TResult Function()? turnedOn,
+    TResult Function()? turnedOff,
+    TResult Function(int duration)? timerTicked,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(TurnedOn value) turnedOn,
+    required TResult Function(TurnedOff value) turnedOff,
     required TResult Function(TimerTicked value) timerTicked,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(TurnedOn value)? turnedOn,
+    TResult Function(TurnedOff value)? turnedOff,
     TResult Function(TimerTicked value)? timerTicked,
     required TResult orElse(),
   }) =>
@@ -532,61 +641,58 @@ mixin _$TrafficLightEvent {
 }
 
 /// @nodoc
-abstract class $TrafficLightEventCopyWith<$Res> {
-  factory $TrafficLightEventCopyWith(
-          TrafficLightEvent value, $Res Function(TrafficLightEvent) then) =
-      _$TrafficLightEventCopyWithImpl<$Res>;
+abstract class $TrafficLightsEventCopyWith<$Res> {
+  factory $TrafficLightsEventCopyWith(
+          TrafficLightsEvent value, $Res Function(TrafficLightsEvent) then) =
+      _$TrafficLightsEventCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$TrafficLightEventCopyWithImpl<$Res>
-    implements $TrafficLightEventCopyWith<$Res> {
-  _$TrafficLightEventCopyWithImpl(this._value, this._then);
+class _$TrafficLightsEventCopyWithImpl<$Res>
+    implements $TrafficLightsEventCopyWith<$Res> {
+  _$TrafficLightsEventCopyWithImpl(this._value, this._then);
 
-  final TrafficLightEvent _value;
+  final TrafficLightsEvent _value;
   // ignore: unused_field
-  final $Res Function(TrafficLightEvent) _then;
+  final $Res Function(TrafficLightsEvent) _then;
 }
 
 /// @nodoc
-abstract class $TimerTickedCopyWith<$Res> {
-  factory $TimerTickedCopyWith(
-          TimerTicked value, $Res Function(TimerTicked) then) =
-      _$TimerTickedCopyWithImpl<$Res>;
+abstract class $TurnedOnCopyWith<$Res> {
+  factory $TurnedOnCopyWith(TurnedOn value, $Res Function(TurnedOn) then) =
+      _$TurnedOnCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$TimerTickedCopyWithImpl<$Res>
-    extends _$TrafficLightEventCopyWithImpl<$Res>
-    implements $TimerTickedCopyWith<$Res> {
-  _$TimerTickedCopyWithImpl(
-      TimerTicked _value, $Res Function(TimerTicked) _then)
-      : super(_value, (v) => _then(v as TimerTicked));
+class _$TurnedOnCopyWithImpl<$Res>
+    extends _$TrafficLightsEventCopyWithImpl<$Res>
+    implements $TurnedOnCopyWith<$Res> {
+  _$TurnedOnCopyWithImpl(TurnedOn _value, $Res Function(TurnedOn) _then)
+      : super(_value, (v) => _then(v as TurnedOn));
 
   @override
-  TimerTicked get _value => super._value as TimerTicked;
+  TurnedOn get _value => super._value as TurnedOn;
 }
 
 /// @nodoc
 
-class _$TimerTicked with DiagnosticableTreeMixin implements TimerTicked {
-  const _$TimerTicked();
+class _$TurnedOn with DiagnosticableTreeMixin implements TurnedOn {
+  const _$TurnedOn();
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'TrafficLightEvent.timerTicked()';
+    return 'TrafficLightsEvent.turnedOn()';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'TrafficLightEvent.timerTicked'));
+    properties..add(DiagnosticsProperty('type', 'TrafficLightsEvent.turnedOn'));
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is TimerTicked);
+    return identical(this, other) || (other is TurnedOn);
   }
 
   @override
@@ -595,19 +701,23 @@ class _$TimerTicked with DiagnosticableTreeMixin implements TimerTicked {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() timerTicked,
+    required TResult Function() turnedOn,
+    required TResult Function() turnedOff,
+    required TResult Function(int duration) timerTicked,
   }) {
-    return timerTicked();
+    return turnedOn();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? timerTicked,
+    TResult Function()? turnedOn,
+    TResult Function()? turnedOff,
+    TResult Function(int duration)? timerTicked,
     required TResult orElse(),
   }) {
-    if (timerTicked != null) {
-      return timerTicked();
+    if (turnedOn != null) {
+      return turnedOn();
     }
     return orElse();
   }
@@ -615,6 +725,227 @@ class _$TimerTicked with DiagnosticableTreeMixin implements TimerTicked {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(TurnedOn value) turnedOn,
+    required TResult Function(TurnedOff value) turnedOff,
+    required TResult Function(TimerTicked value) timerTicked,
+  }) {
+    return turnedOn(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TurnedOn value)? turnedOn,
+    TResult Function(TurnedOff value)? turnedOff,
+    TResult Function(TimerTicked value)? timerTicked,
+    required TResult orElse(),
+  }) {
+    if (turnedOn != null) {
+      return turnedOn(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class TurnedOn implements TrafficLightsEvent {
+  const factory TurnedOn() = _$TurnedOn;
+}
+
+/// @nodoc
+abstract class $TurnedOffCopyWith<$Res> {
+  factory $TurnedOffCopyWith(TurnedOff value, $Res Function(TurnedOff) then) =
+      _$TurnedOffCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$TurnedOffCopyWithImpl<$Res>
+    extends _$TrafficLightsEventCopyWithImpl<$Res>
+    implements $TurnedOffCopyWith<$Res> {
+  _$TurnedOffCopyWithImpl(TurnedOff _value, $Res Function(TurnedOff) _then)
+      : super(_value, (v) => _then(v as TurnedOff));
+
+  @override
+  TurnedOff get _value => super._value as TurnedOff;
+}
+
+/// @nodoc
+
+class _$TurnedOff with DiagnosticableTreeMixin implements TurnedOff {
+  const _$TurnedOff();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'TrafficLightsEvent.turnedOff()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'TrafficLightsEvent.turnedOff'));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is TurnedOff);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() turnedOn,
+    required TResult Function() turnedOff,
+    required TResult Function(int duration) timerTicked,
+  }) {
+    return turnedOff();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? turnedOn,
+    TResult Function()? turnedOff,
+    TResult Function(int duration)? timerTicked,
+    required TResult orElse(),
+  }) {
+    if (turnedOff != null) {
+      return turnedOff();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(TurnedOn value) turnedOn,
+    required TResult Function(TurnedOff value) turnedOff,
+    required TResult Function(TimerTicked value) timerTicked,
+  }) {
+    return turnedOff(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TurnedOn value)? turnedOn,
+    TResult Function(TurnedOff value)? turnedOff,
+    TResult Function(TimerTicked value)? timerTicked,
+    required TResult orElse(),
+  }) {
+    if (turnedOff != null) {
+      return turnedOff(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class TurnedOff implements TrafficLightsEvent {
+  const factory TurnedOff() = _$TurnedOff;
+}
+
+/// @nodoc
+abstract class $TimerTickedCopyWith<$Res> {
+  factory $TimerTickedCopyWith(
+          TimerTicked value, $Res Function(TimerTicked) then) =
+      _$TimerTickedCopyWithImpl<$Res>;
+  $Res call({int duration});
+}
+
+/// @nodoc
+class _$TimerTickedCopyWithImpl<$Res>
+    extends _$TrafficLightsEventCopyWithImpl<$Res>
+    implements $TimerTickedCopyWith<$Res> {
+  _$TimerTickedCopyWithImpl(
+      TimerTicked _value, $Res Function(TimerTicked) _then)
+      : super(_value, (v) => _then(v as TimerTicked));
+
+  @override
+  TimerTicked get _value => super._value as TimerTicked;
+
+  @override
+  $Res call({
+    Object? duration = freezed,
+  }) {
+    return _then(TimerTicked(
+      duration == freezed
+          ? _value.duration
+          : duration // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$TimerTicked with DiagnosticableTreeMixin implements TimerTicked {
+  const _$TimerTicked(this.duration);
+
+  @override
+  final int duration;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'TrafficLightsEvent.timerTicked(duration: $duration)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'TrafficLightsEvent.timerTicked'))
+      ..add(DiagnosticsProperty('duration', duration));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TimerTicked &&
+            (identical(other.duration, duration) ||
+                const DeepCollectionEquality()
+                    .equals(other.duration, duration)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(duration);
+
+  @JsonKey(ignore: true)
+  @override
+  $TimerTickedCopyWith<TimerTicked> get copyWith =>
+      _$TimerTickedCopyWithImpl<TimerTicked>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() turnedOn,
+    required TResult Function() turnedOff,
+    required TResult Function(int duration) timerTicked,
+  }) {
+    return timerTicked(duration);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? turnedOn,
+    TResult Function()? turnedOff,
+    TResult Function(int duration)? timerTicked,
+    required TResult orElse(),
+  }) {
+    if (timerTicked != null) {
+      return timerTicked(duration);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(TurnedOn value) turnedOn,
+    required TResult Function(TurnedOff value) turnedOff,
     required TResult Function(TimerTicked value) timerTicked,
   }) {
     return timerTicked(this);
@@ -623,6 +954,8 @@ class _$TimerTicked with DiagnosticableTreeMixin implements TimerTicked {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(TurnedOn value)? turnedOn,
+    TResult Function(TurnedOff value)? turnedOff,
     TResult Function(TimerTicked value)? timerTicked,
     required TResult orElse(),
   }) {
@@ -633,6 +966,11 @@ class _$TimerTicked with DiagnosticableTreeMixin implements TimerTicked {
   }
 }
 
-abstract class TimerTicked implements TrafficLightEvent {
-  const factory TimerTicked() = _$TimerTicked;
+abstract class TimerTicked implements TrafficLightsEvent {
+  const factory TimerTicked(int duration) = _$TimerTicked;
+
+  int get duration => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $TimerTickedCopyWith<TimerTicked> get copyWith =>
+      throw _privateConstructorUsedError;
 }
