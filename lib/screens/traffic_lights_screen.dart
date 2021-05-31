@@ -8,8 +8,7 @@ class TrafficLightsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<TrafficLightsBloc, TrafficLightsState>(
-      builder: (builderContext, state) {
-        print(state);
+      builder: (builderContext, state) {        
         return Scaffold(
           body: Center(
             child: Column(

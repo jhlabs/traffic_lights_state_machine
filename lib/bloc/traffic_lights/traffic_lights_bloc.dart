@@ -21,17 +21,13 @@ class TrafficLightsBloc extends Bloc<TrafficLightsEvent, TrafficLightsState> {
   @override
   Stream<TrafficLightsState> mapEventToState(TrafficLightsEvent event) async* {
     yield event.when(
-      turnedOn: () {        
-        _timerSubscription?.cancel();
-
-        _timerSubscription = _ticker.tick(ticks: 5).listen(
-        (duration) => add(TrafficLightsEvent.timerTicked(duration)));
-        
-        return TrafficLightsState.green(5);
+      turnedOn: () {
+        _setTimer(10);
+        return TrafficLightsState.green(10);
       },
       turnedOff: () {
         _timerSubscription?.cancel();
-        return TrafficLightsState.off();        
+        return TrafficLightsState.off();
       },
       timerTicked: (duration) {
         return state.map(
@@ -40,17 +36,41 @@ class TrafficLightsBloc extends Bloc<TrafficLightsEvent, TrafficLightsState> {
             return TrafficLightsState.off();
           },
           green: (state) {
-            return TrafficLightsState.orange(3);
+            if (duration > 0) return state.copyWith();
+            _setTimer(3);
+            return TrafficLightsState.orange(3, state);
           },
           orange: (state) {
-            return TrafficLightsState.green(3);
+            if (duration > 0) return state.copyWith();
+            return state.previousState.maybeWhen(
+              green: (duration) {
+                _setTimer(8);
+                return TrafficLightsState.red(8);
+              },
+              red: (duration) {
+                _setTimer(10);
+                return TrafficLightsState.green(10);
+              },
+              orElse: () {
+                throw Exception('Impossible State!');
+              },
+            );
           },
           red: (state) {
-            return TrafficLightsState.orange(3);
+            if (duration > 0) return state.copyWith();
+            _setTimer(3);
+            return TrafficLightsState.orange(3, state);
           },
         );
       },
     );
+  }
+
+  void _setTimer(int seconds) {
+    _timerSubscription?.cancel();
+    _timerSubscription = _ticker
+        .tick(ticks: seconds)
+        .listen((duration) => add(TrafficLightsEvent.timerTicked(duration)));
   }
 
   @override

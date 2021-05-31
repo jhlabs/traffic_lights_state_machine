@@ -26,9 +26,10 @@ class _$TrafficLightsStateTearOff {
     );
   }
 
-  Orange orange(int timeRemaining) {
+  Orange orange(int timeRemaining, TrafficLightsState previousState) {
     return Orange(
       timeRemaining,
+      previousState,
     );
   }
 
@@ -48,7 +49,9 @@ mixin _$TrafficLightsState {
   TResult when<TResult extends Object?>({
     required TResult Function() off,
     required TResult Function(int timeRemaining) green,
-    required TResult Function(int timeRemaining) orange,
+    required TResult Function(
+            int timeRemaining, TrafficLightsState previousState)
+        orange,
     required TResult Function(int timeRemaining) red,
   }) =>
       throw _privateConstructorUsedError;
@@ -56,7 +59,8 @@ mixin _$TrafficLightsState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? off,
     TResult Function(int timeRemaining)? green,
-    TResult Function(int timeRemaining)? orange,
+    TResult Function(int timeRemaining, TrafficLightsState previousState)?
+        orange,
     TResult Function(int timeRemaining)? red,
     required TResult orElse(),
   }) =>
@@ -142,7 +146,9 @@ class _$Off extends Off with DiagnosticableTreeMixin {
   TResult when<TResult extends Object?>({
     required TResult Function() off,
     required TResult Function(int timeRemaining) green,
-    required TResult Function(int timeRemaining) orange,
+    required TResult Function(
+            int timeRemaining, TrafficLightsState previousState)
+        orange,
     required TResult Function(int timeRemaining) red,
   }) {
     return off();
@@ -153,7 +159,8 @@ class _$Off extends Off with DiagnosticableTreeMixin {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? off,
     TResult Function(int timeRemaining)? green,
-    TResult Function(int timeRemaining)? orange,
+    TResult Function(int timeRemaining, TrafficLightsState previousState)?
+        orange,
     TResult Function(int timeRemaining)? red,
     required TResult orElse(),
   }) {
@@ -268,7 +275,9 @@ class _$Green extends Green with DiagnosticableTreeMixin {
   TResult when<TResult extends Object?>({
     required TResult Function() off,
     required TResult Function(int timeRemaining) green,
-    required TResult Function(int timeRemaining) orange,
+    required TResult Function(
+            int timeRemaining, TrafficLightsState previousState)
+        orange,
     required TResult Function(int timeRemaining) red,
   }) {
     return green(timeRemaining);
@@ -279,7 +288,8 @@ class _$Green extends Green with DiagnosticableTreeMixin {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? off,
     TResult Function(int timeRemaining)? green,
-    TResult Function(int timeRemaining)? orange,
+    TResult Function(int timeRemaining, TrafficLightsState previousState)?
+        orange,
     TResult Function(int timeRemaining)? red,
     required TResult orElse(),
   }) {
@@ -329,7 +339,9 @@ abstract class Green extends TrafficLightsState {
 abstract class $OrangeCopyWith<$Res> {
   factory $OrangeCopyWith(Orange value, $Res Function(Orange) then) =
       _$OrangeCopyWithImpl<$Res>;
-  $Res call({int timeRemaining});
+  $Res call({int timeRemaining, TrafficLightsState previousState});
+
+  $TrafficLightsStateCopyWith<$Res> get previousState;
 }
 
 /// @nodoc
@@ -344,27 +356,41 @@ class _$OrangeCopyWithImpl<$Res> extends _$TrafficLightsStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? timeRemaining = freezed,
+    Object? previousState = freezed,
   }) {
     return _then(Orange(
       timeRemaining == freezed
           ? _value.timeRemaining
           : timeRemaining // ignore: cast_nullable_to_non_nullable
               as int,
+      previousState == freezed
+          ? _value.previousState
+          : previousState // ignore: cast_nullable_to_non_nullable
+              as TrafficLightsState,
     ));
+  }
+
+  @override
+  $TrafficLightsStateCopyWith<$Res> get previousState {
+    return $TrafficLightsStateCopyWith<$Res>(_value.previousState, (value) {
+      return _then(_value.copyWith(previousState: value));
+    });
   }
 }
 
 /// @nodoc
 
 class _$Orange extends Orange with DiagnosticableTreeMixin {
-  const _$Orange(this.timeRemaining) : super._();
+  const _$Orange(this.timeRemaining, this.previousState) : super._();
 
   @override
   final int timeRemaining;
+  @override
+  final TrafficLightsState previousState;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'TrafficLightsState.orange(timeRemaining: $timeRemaining)';
+    return 'TrafficLightsState.orange(timeRemaining: $timeRemaining, previousState: $previousState)';
   }
 
   @override
@@ -372,7 +398,8 @@ class _$Orange extends Orange with DiagnosticableTreeMixin {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'TrafficLightsState.orange'))
-      ..add(DiagnosticsProperty('timeRemaining', timeRemaining));
+      ..add(DiagnosticsProperty('timeRemaining', timeRemaining))
+      ..add(DiagnosticsProperty('previousState', previousState));
   }
 
   @override
@@ -381,12 +408,17 @@ class _$Orange extends Orange with DiagnosticableTreeMixin {
         (other is Orange &&
             (identical(other.timeRemaining, timeRemaining) ||
                 const DeepCollectionEquality()
-                    .equals(other.timeRemaining, timeRemaining)));
+                    .equals(other.timeRemaining, timeRemaining)) &&
+            (identical(other.previousState, previousState) ||
+                const DeepCollectionEquality()
+                    .equals(other.previousState, previousState)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(timeRemaining);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(timeRemaining) ^
+      const DeepCollectionEquality().hash(previousState);
 
   @JsonKey(ignore: true)
   @override
@@ -398,10 +430,12 @@ class _$Orange extends Orange with DiagnosticableTreeMixin {
   TResult when<TResult extends Object?>({
     required TResult Function() off,
     required TResult Function(int timeRemaining) green,
-    required TResult Function(int timeRemaining) orange,
+    required TResult Function(
+            int timeRemaining, TrafficLightsState previousState)
+        orange,
     required TResult Function(int timeRemaining) red,
   }) {
-    return orange(timeRemaining);
+    return orange(timeRemaining, previousState);
   }
 
   @override
@@ -409,12 +443,13 @@ class _$Orange extends Orange with DiagnosticableTreeMixin {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? off,
     TResult Function(int timeRemaining)? green,
-    TResult Function(int timeRemaining)? orange,
+    TResult Function(int timeRemaining, TrafficLightsState previousState)?
+        orange,
     TResult Function(int timeRemaining)? red,
     required TResult orElse(),
   }) {
     if (orange != null) {
-      return orange(timeRemaining);
+      return orange(timeRemaining, previousState);
     }
     return orElse();
   }
@@ -447,10 +482,12 @@ class _$Orange extends Orange with DiagnosticableTreeMixin {
 }
 
 abstract class Orange extends TrafficLightsState {
-  const factory Orange(int timeRemaining) = _$Orange;
+  const factory Orange(int timeRemaining, TrafficLightsState previousState) =
+      _$Orange;
   const Orange._() : super._();
 
   int get timeRemaining => throw _privateConstructorUsedError;
+  TrafficLightsState get previousState => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $OrangeCopyWith<Orange> get copyWith => throw _privateConstructorUsedError;
 }
@@ -527,7 +564,9 @@ class _$Red extends Red with DiagnosticableTreeMixin {
   TResult when<TResult extends Object?>({
     required TResult Function() off,
     required TResult Function(int timeRemaining) green,
-    required TResult Function(int timeRemaining) orange,
+    required TResult Function(
+            int timeRemaining, TrafficLightsState previousState)
+        orange,
     required TResult Function(int timeRemaining) red,
   }) {
     return red(timeRemaining);
@@ -538,7 +577,8 @@ class _$Red extends Red with DiagnosticableTreeMixin {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? off,
     TResult Function(int timeRemaining)? green,
-    TResult Function(int timeRemaining)? orange,
+    TResult Function(int timeRemaining, TrafficLightsState previousState)?
+        orange,
     TResult Function(int timeRemaining)? red,
     required TResult orElse(),
   }) {
