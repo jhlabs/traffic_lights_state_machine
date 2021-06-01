@@ -9,6 +9,14 @@ part 'traffic_lights_state.dart';
 part 'traffic_lights_event.dart';
 part 'traffic_lights_bloc.freezed.dart';
 
+enum Phase { green, orange, red }
+
+final Map<Phase, int> durations = {
+  Phase.green: 8,
+  Phase.orange: 3,
+  Phase.red: 5,
+};
+
 class TrafficLightsBloc extends Bloc<TrafficLightsEvent, TrafficLightsState> {
   final Ticker _ticker;
 
@@ -22,8 +30,8 @@ class TrafficLightsBloc extends Bloc<TrafficLightsEvent, TrafficLightsState> {
   Stream<TrafficLightsState> mapEventToState(TrafficLightsEvent event) async* {
     yield event.when(
       turnedOn: () {
-        _setTimer(10);
-        return TrafficLightsState.green(10);
+        _setTimer(durations[Phase.green] as int);
+        return TrafficLightsState.green(durations[Phase.green] as int);
       },
       turnedOff: () {
         _timerSubscription?.cancel();
@@ -37,19 +45,19 @@ class TrafficLightsBloc extends Bloc<TrafficLightsEvent, TrafficLightsState> {
           },
           green: (state) {
             if (duration > 0) return state.copyWith();
-            _setTimer(3);
-            return TrafficLightsState.orange(3, state);
+            _setTimer(durations[Phase.orange] as int);
+            return TrafficLightsState.orange(durations[Phase.orange] as int, state);
           },
           orange: (state) {
             if (duration > 0) return state.copyWith();
             return state.previousState.maybeWhen(
               green: (duration) {
-                _setTimer(8);
-                return TrafficLightsState.red(8);
+                _setTimer(durations[Phase.red] as int);
+                return TrafficLightsState.red(durations[Phase.red] as int);
               },
               red: (duration) {
-                _setTimer(10);
-                return TrafficLightsState.green(10);
+                _setTimer(durations[Phase.green] as int);
+                return TrafficLightsState.green(durations[Phase.green] as int);
               },
               orElse: () {
                 throw Exception('Impossible State!');
@@ -58,8 +66,8 @@ class TrafficLightsBloc extends Bloc<TrafficLightsEvent, TrafficLightsState> {
           },
           red: (state) {
             if (duration > 0) return state.copyWith();
-            _setTimer(3);
-            return TrafficLightsState.orange(3, state);
+            _setTimer(durations[Phase.orange] as int);
+            return TrafficLightsState.orange(durations[Phase.orange] as int, state);
           },
         );
       },

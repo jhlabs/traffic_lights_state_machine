@@ -18,10 +18,10 @@ class TrafficLightsScreen extends StatelessWidget {
                 state.map(
                   off: (currentState) => TrafficLights(),
                   green: (currentState) =>
-                      TrafficLights(option: ColorOption.green),
+                      TrafficLights(option: Phase.green),
                   orange: (currentState) =>
-                      TrafficLights(option: ColorOption.amber),
-                  red: (currentState) => TrafficLights(option: ColorOption.red),
+                      TrafficLights(option: Phase.orange),
+                  red: (currentState) => TrafficLights(option: Phase.red),
                 ),
                 SizedBox(height: 64.0),
                 Row(
@@ -55,10 +55,8 @@ class TrafficLightsScreen extends StatelessWidget {
   }
 }
 
-enum ColorOption { green, amber, red }
-
 class TrafficLights extends StatelessWidget {
-  final ColorOption? option;
+  final Phase? option;
   const TrafficLights({
     this.option,
     Key? key,
@@ -70,15 +68,15 @@ class TrafficLights extends StatelessWidget {
       children: [
         Light(
           color: Colors.red,
-          active: option == ColorOption.red,
+          active: option == Phase.red,
         ),
         Light(
           color: Colors.amber,
-          active: option == ColorOption.amber,
+          active: option == Phase.orange,
         ),
         Light(
           color: Colors.green,
-          active: option == ColorOption.green,
+          active: option == Phase.green,
         ),
       ],
     );

@@ -9,11 +9,10 @@ class MockTicker extends Mock implements Ticker {}
 void main() {
   group('TrafficLightsBloc', () {
     late TrafficLightsBloc bloc;
+    late Ticker ticker;
 
     setUp(() {
-      final ticker = MockTicker();
-      when(() => ticker.tick(ticks: 10))
-          .thenAnswer((_) => Stream.fromIterable([10]));
+      ticker = MockTicker();
       bloc = TrafficLightsBloc(ticker: ticker);
     });
 
@@ -22,9 +21,30 @@ void main() {
     });
 
     blocTest('emits green state when turnedOn event is emitted',
-        build: () => bloc,
+        build: () {
+          when(() => ticker.tick(ticks: durations[Phase.green] as int))
+              .thenAnswer(
+                  (_) => Stream.fromIterable([durations[Phase.green] as int]));
+          return bloc;
+        },
         act: (TrafficLightsBloc bloc) =>
             bloc.add(TrafficLightsEvent.turnedOn()),
-        expect: () => [TrafficLightsState.green(10)]);
+        expect: () =>
+            [TrafficLightsState.green(durations[Phase.green] as int)]);
+    blocTest('sets bloc to off when emitting turnedOff event',
+        build: () {
+          when(() => ticker.tick(ticks: durations[Phase.green] as int))
+              .thenAnswer(
+                  (_) => Stream.fromIterable([durations[Phase.green] as int]));
+          bloc.add(TrafficLightsEvent.turnedOn());
+          return bloc;
+        },
+        act: (TrafficLightsBloc bloc) =>
+            bloc.add(TrafficLightsEvent.turnedOff()),
+        expect: () => [
+          TrafficLightsState.green(durations[Phase.green] as int),
+          TrafficLightsState.off()
+        ]
+    );
   });
 }
