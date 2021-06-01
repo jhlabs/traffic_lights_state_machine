@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
-import 'package:traffic_lights_state_machine/services/timer.dart';
+import 'package:traffic_lights_state_machine/services/ticker.dart';
 
 part 'traffic_lights_state.dart';
 part 'traffic_lights_event.dart';
